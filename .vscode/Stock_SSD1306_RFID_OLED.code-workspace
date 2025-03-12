@@ -1,0 +1,48 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.cps": "javascript",
+			"esp_lcd_panel_vendor.h": "c",
+			"lvgl.h": "c",
+			"freertos.h": "c",
+			"task.h": "c",
+			"stdio.h": "c",
+			"esp_rom_sys.h": "c",
+			"esp_rom_gpio.h": "c",
+			"i2c_periph.h": "c",
+			"semphr.h": "c",
+			"i2c.h": "c",
+			"ssd1306_spi.h": "c",
+			"ssd1306_interface.h": "c",
+			"esp_log.h": "c",
+			"idf_additions.h": "c",
+			"ssd1306_i2c.h": "c",
+			"io.h": "c",
+			"array": "c",
+			"string": "c",
+			"string_view": "c",
+			"vector": "c",
+			"locale": "c",
+			"ssd1306_commands.h": "c",
+			"esp_log_internal.h": "c",
+			"esp_log_buffer.h": "c",
+			"freertosconfig.h": "c",
+			"portable.h": "c",
+			"projdefs.h": "c",
+			"lcd_common.h": "c",
+			"ssd1306_generic.h": "c",
+			"gpio.h": "c",
+			"esp_err.h": "c"
+		},
+		"workbench.settings.openDefaultSettings": true,
+		"idf.enableIdfComponentManager": true,
+		"terminal.explorerKind": "external",
+		"python.defaultInterpreterPath": "/Users/alanordorica/.espressif/python_env/idf5.4_py3.13_env/bin/python3",
+		"python.envFile": "/Users/alanordorica/Developer/Stock_SSD1306_RFID_OLED/.vscode/.env"
+	}
+}

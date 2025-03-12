@@ -1,0 +1,131 @@
+menu "Lexus2k Lib SSD1306 Configuration"
+
+    # Ensure the user selects the display type
+    choice CONFIG_SSD1306_DISPLAY_TYPE
+        prompt "Select SSD1306 Display Type"
+        default SSD1306
+        help
+            Choose between different display types.
+            (SSD1306, SH1106, SSD1325, SSD1327, SSD1331, SSD1351, PCD8544, ST7735, ILI9341, IL9163, VGA, Composite Video).
+
+        config SSD1306
+            bool "SSD1306"
+            help
+                Select SSD1306 OLED Display.
+
+        config SH1106
+            bool "SH1106"
+            help
+                Select SH1106 OLED Display.
+
+        config SSD1325
+            bool "SSD1325"
+            help
+                Select SSD1325 OLED Display.
+
+        config SSD1327
+            bool "SSD1327"
+            help
+                Select SSD1327 OLED Display.
+
+        config SSD1331
+            bool "SSD1331"
+            help
+                Select SSD1331 OLED Display.
+
+        config SSD1351
+            bool "SSD1351"
+            help
+                Select SSD1351 OLED Display.
+
+        config PCD8544
+            bool "PCD8544"
+            help
+                Select PCD8544 LCD Display (Nokia 5110).
+
+        config ST7735
+            bool "ST7735"
+            help
+                Select ST7735 TFT Display.
+
+        config ILI9341
+            bool "ILI9341"
+            help
+                Select ILI9341 TFT Display.
+
+        config IL9163
+            bool "IL9163"
+            help
+                Select IL9163 TFT Display.
+
+        config VGA
+            bool "VGA"
+            help
+                Select VGA Display.
+
+        config COMPOSITE_VIDEO
+            bool "Composite Video"
+            help
+                Select Composite Video Output.
+
+    endchoice
+
+    config USE_I2C_INTERFACE
+        bool "Use I2C Interface"
+        default y
+        help
+            Enable I2C interface for the selected display type.
+    
+    config USE_SPI_INTERFACE
+        bool "Use SPI Interface"
+        default n
+        help
+            Enable SPI interface for the selected display type.
+    choice ESP_DEVICE_TYPE
+        prompt "Select the target master device. (Default is ESP32)"
+        default ESP32
+        help 
+            Choose the device system being used to connect to the display for the SSD1306 library.
+            (ESP32, Arduino, Linux, STM32, Energia, AVR, CH32v, MINGW)
+        config ESP32
+            bool "ESP32"
+            help
+            Select an ESP32 as the target master.
+
+        config ARDUINO
+            bool "Arduino"
+            help
+            Select an Arduino as the target.
+
+        config LINUX
+            bool "Linux"
+            help
+            Select Linux as the target.
+
+        config STM32
+            bool "STM32"
+            help
+            Select an STM32 as the target.
+
+        config ENERGIA
+            bool "Energia"
+            help
+            Select Energia as the target.
+
+        config AVR
+            bool "AVR"
+            help
+            Select an AVR as the target.
+
+        config CH32V
+            bool "CH32v"
+            help
+            Select a CH32v as the target.
+
+        config MINGW
+            bool "MINGW"
+            help
+            Select MINGW as the target.
+    endchoice
+
+endmenu

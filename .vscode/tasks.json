@@ -1,0 +1,72 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "cd ${workspaceFolder} && source $HOME/esp/v5.4/esp-idf/export.sh && idf.py build"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "PATH": "/Users/alanordorica/.espressif/python_env/idf5.4_py3.13_env/bin:${env:PATH}"
+        }
+      }
+    },
+    {
+      "label": "Start OpenOCD",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "cd ${workspaceFolder} && nohup /Users/alanordorica/.espressif/tools/openocd-esp32/v0.12.0-esp32-20241016/openocd-esp32/bin/openocd -c \"set ESP_RTOS none\" -f /Users/alanordorica/.espressif/tools/openocd-esp32/v0.12.0-esp32-20241016/openocd-esp32/share/openocd/scripts/board/esp32s3-builtin.cfg -c \"transport select jtag\" > /dev/null 2>&1 &"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build and Start OpenOCD",
+      "dependsOn": [
+        "Start OpenOCD",
+        "Build"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Stop OpenOCD",
+      "type": "shell",
+      "command": "pkill",
+      "args": [
+        "openocd"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Print ENV Vars",
+      "type": "shell",
+      "command": "bash",
+      "args": [
+        "-c",
+        "env > /tmp/env_vscode.txt"
+      ],
+      "problemMatcher": [],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      }
+    },
+  ]
+}

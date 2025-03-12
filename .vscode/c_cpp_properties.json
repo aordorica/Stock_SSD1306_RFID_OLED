@@ -1,0 +1,66 @@
+{
+    "configurations": [
+        {
+            "name": "ESP-IDF [Xtensa | esp-12.2.0_20230208]",
+            "cStandard": "c11",
+            "cppStandard": "c++23",
+            "forcedInclude": [
+                "${env:forcedIncludePath}"
+            ],
+            "includePath": [
+                "${env:configAdditionalIncludePath}",
+                "${env:xtensaIncludePath}",
+                "${env:workspaceIncludePath}",
+                "${env:idfIncludePath}",
+                "${env:IDF_PATH}/components/**",
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/managed_components/**",
+                "${workspaceFolder}/components/**",
+                "${IDF_PATH}/components/esp_gdbstub/include"
+            ],
+            "browse": {
+                "path": [
+                    "${env:configAdditionalBrowsePath}",
+                    "${env:xtensaBrowsePath}",
+                    "${env:workspaceBrowsePath}",
+                    "${env:idfBrowsePath}"
+                ],
+                "limitSymbolsToIncludedHeaders": false
+            },
+            "compilerPath": "${config:idf.toolsPath}/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc",
+            "compilerArgs": [
+                "-DIDF_TARGET=${config:idf.adapterTargetName}",
+                "-D__XTENSA__"
+            ],
+            "defines": [
+                "IDF_TARGET=${config:idf.adapterTargetName}",
+                "__XTENSA__"
+            ],
+            "intelliSenseMode": "windows-gcc-x86"
+        },
+        {
+            "name": "Mac",
+            "includePath": [
+                "${config:idf.espIdfPath}/components/**",
+                "${config:idf.espIdfPathWin}/components/**",
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/managed_components/**",
+                "${IDF_PATH}/components/**"
+            ],
+            "browse": {
+                "path": [
+                    "${config:idf.espIdfPath}/components",
+                    "${config:idf.espIdfPathWin}/components",
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-arm64"
+        }
+    ],
+    "version": 4
+}
