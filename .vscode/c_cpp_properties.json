@@ -13,7 +13,6 @@
                 "${env:workspaceIncludePath}",
                 "${env:idfIncludePath}",
                 "${env:IDF_PATH}/components/**",
-                "${workspaceFolder}/**",
                 "${workspaceFolder}/managed_components/**",
                 "${workspaceFolder}/components/**",
                 "${IDF_PATH}/components/esp_gdbstub/include"
@@ -25,7 +24,7 @@
                     "${env:workspaceBrowsePath}",
                     "${env:idfBrowsePath}"
                 ],
-                "limitSymbolsToIncludedHeaders": false
+                "limitSymbolsToIncludedHeaders": true
             },
             "compilerPath": "${config:idf.toolsPath}/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc",
             "compilerArgs": [
@@ -36,30 +35,9 @@
                 "IDF_TARGET=${config:idf.adapterTargetName}",
                 "__XTENSA__"
             ],
-            "intelliSenseMode": "windows-gcc-x86"
-        },
-        {
-            "name": "Mac",
-            "includePath": [
-                "${config:idf.espIdfPath}/components/**",
-                "${config:idf.espIdfPathWin}/components/**",
-                "${workspaceFolder}/**",
-                "${workspaceFolder}/managed_components/**",
-                "${IDF_PATH}/components/**"
-            ],
-            "browse": {
-                "path": [
-                    "${config:idf.espIdfPath}/components",
-                    "${config:idf.espIdfPathWin}/components",
-                    "${workspaceFolder}"
-                ],
-                "limitSymbolsToIncludedHeaders": true
-            },
-            "defines": [],
-            "compilerPath": "/usr/bin/clang",
-            "cStandard": "c17",
-            "cppStandard": "c++17",
-            "intelliSenseMode": "macos-clang-arm64"
+            "intelliSenseMode": "gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
         }
     ],
     "version": 4

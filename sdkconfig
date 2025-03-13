@@ -2305,11 +2305,6 @@ CONFIG_ESP32=y
 # end of Lexus2k Lib SSD1306 Configuration
 
 #
-# Lexus2k Lib SSD1306 Configuration
-#
-# end of Lexus2k Lib SSD1306 Configuration
-
-#
 # DSP Library
 #
 CONFIG_DSP_OPTIMIZATIONS_SUPPORTED=y

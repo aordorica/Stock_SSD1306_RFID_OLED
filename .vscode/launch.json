@@ -1,82 +1,40 @@
-// {
-//     // Use IntelliSense to learn about possible attributes.
-//     // Hover to view descriptions of existing attributes.
-//     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-// "version": "0.2.0",
-//     "configurations": [
-//         {
-//             "name": "ESP32-S3 GDB Stub Debug",
-//             "type": "cppdbg",
-//             "request": "launch",
-//             "program": "/Users/alanordorica/Developer/Stock_SSD1306_RFID_OLED/build/Stock_SSD1306_RFID_OLED.elf",
-//             // "cwd": "${workspaceFolder}",
-//             "cwd": "/Users/alanordorica/Developer/Stock_SSD1306_RFID_OLED",
-//             "miDebuggerPath": "/Users/alanordorica/.espressif/tools/xtensa-esp-elf-gdb/14.2_20240403/xtensa-esp-elf-gdb/bin/xtensa-esp32s3-elf-gdb",
-//             // "miDebuggerServerAddress": "localhost:3333",
-//             "debugServerPath": "/Users/alanordorica/.espressif/tools/openocd-esp32/v0.12.0-esp32-20241016/openocd-esp32/bin/openocd",
-//             "setupCommands": [
-//                 {
-//                     "text": "target remote localhost:3333"
-//                 },
-//                 {
-//                     "text": "monitor reset halt"
-//                 },
-//                 {
-//                     "text": "flushregs"
-//                 },
-//             ],
-//             // "debugServerArgs": "-f /Users/alanordorica/.espressif/tools/openocd-esp32/v0.12.0-esp32-20241016/openocd-esp32/share/openocd/scripts/board/esp32s3-builtin.cfg",
-//             "stopAtEntry": true,
-//             // "serverLaunchTimeout": 30000,
-//         }
-//     ]
-// }
 {
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "GDB Build and Debug",
+            "preLaunchTask": "Start OpenOCD",
+            "postDebugTask": "Stop OpenOCD",
+            "name": "GDB Debug",
             "type": "cppdbg",
             "request": "launch",
             "program": "/Users/alanordorica/Developer/Stock_SSD1306_RFID_OLED/build/Stock_SSD1306_RFID_OLED.elf",
-            "cwd": "${workspaceFolder}",
-            "MIMode": "gdb",
+            "cwd": "${workspaceFolder}/build",
             "stopAtEntry": true,
-            // "serverLaunchTimeout": 30000,
             "miDebuggerPath": "/Users/alanordorica/.espressif/tools/xtensa-esp-elf-gdb/14.2_20240403/xtensa-esp-elf-gdb/bin/xtensa-esp32s3-elf-gdb",
-            // "preLaunchTask": "Build and Start OpenOCD",
             "setupCommands": [
                 {
                     "text": "target remote localhost:3333"
                 },
                 {
-                    "text": "break app_main",
+                    "text": "monitor reset halt",
                 },
                 {
                     "text": "flushregs"
-                }
-            ],
-            "debugServerPath": "/Users/alanordorica/.espressif/tools/openocd-esp32/v0.12.0-esp32-20241016/openocd-esp32/bin/openocd",
-            "debugServerArgs": "-f /Users/alanordorica/.espressif/tools/openocd-esp32/v0.12.0-esp32-20241016/openocd-esp32/share/openocd/scripts/board/esp32s3-builtin.cfg -c \"transport select jtag\"",
-            "serverStarted": "Listening on port 3333",
-            "logging": {
-                "trace": true,
-                "traceResponse": true
-            },
-            // "externalConsole": true,
-            "envFile": "/Users/alanordorica/Developer/Stock_SSD1306_RFID_OLED/.vscode/.env",
-            "environment": [
-                {
-                    "name": "IDF_PATH",
-                    "value": "/Users/alanordorica/esp/v5.4/esp-idf"
                 },
                 {
-                    "name": "IDF_TOOLS_PATH",
-                    "value": "/Users/alanordorica/.espressif"
+                    "text": "mon program_esp build/bootloader/bootloader.bin 0x0 verify"
                 },
                 {
-                    "name": "PATH",
-                    "value": "${env:IDF_PATH}/tools:${env:IDF_TOOLS_PATH}/bin:${env:PATH}"
+                    "text": "mon program_esp build/partition_table/partition-table.bin 0x8000 verify"
+                },
+                {
+                    "text": "mon program_esp build/Stock_SSD1306_RFID_OLED.bin 0x10000 verify"
+                },
+                {
+                    "text": "monitor reset halt",
+                },
+                {
+                    "text": "flushregs"
                 }
             ],
         }

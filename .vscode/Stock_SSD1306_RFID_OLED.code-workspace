@@ -42,7 +42,6 @@
 		"workbench.settings.openDefaultSettings": true,
 		"idf.enableIdfComponentManager": true,
 		"terminal.explorerKind": "external",
-		"python.defaultInterpreterPath": "/Users/alanordorica/.espressif/python_env/idf5.4_py3.13_env/bin/python3",
 		"python.envFile": "/Users/alanordorica/Developer/Stock_SSD1306_RFID_OLED/.vscode/.env"
 	}
 }
