@@ -30,17 +30,6 @@
       "problemMatcher": []
     },
     {
-      "label": "Update ESP Device Program",
-      "type": "shell",
-      "command": "idf.py",
-      "args": [
-        "build",
-        "flash",
-        "monitor"
-      ],
-      "problemMatcher": []
-    },
-    {
       "label": "Build",
       "type": "shell",
       "command": "bash",

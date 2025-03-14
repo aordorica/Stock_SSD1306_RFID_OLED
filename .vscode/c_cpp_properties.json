@@ -4,6 +4,7 @@
             "name": "ESP-IDF [Xtensa | esp-12.2.0_20230208]",
             "cStandard": "c11",
             "cppStandard": "c++23",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
             "forcedInclude": [
                 "${env:forcedIncludePath}"
             ],
@@ -19,6 +20,7 @@
             ],
             "browse": {
                 "path": [
+                    "${workspaceFolder}",
                     "${env:configAdditionalBrowsePath}",
                     "${env:xtensaBrowsePath}",
                     "${env:workspaceBrowsePath}",
@@ -26,18 +28,20 @@
                 ],
                 "limitSymbolsToIncludedHeaders": true
             },
-            "compilerPath": "${config:idf.toolsPath}/tools/xtensa-esp32-elf/esp-12.2.0_20230208/xtensa-esp32-elf/bin/xtensa-esp32-elf-gcc",
+            "compilerPath": "${IDF_TOOLS_PATH}tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc",
             "compilerArgs": [
                 "-DIDF_TARGET=${config:idf.adapterTargetName}",
                 "-D__XTENSA__"
             ],
             "defines": [
                 "IDF_TARGET=${config:idf.adapterTargetName}",
-                "__XTENSA__"
+                "__XTENSA__",
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
             ],
             "intelliSenseMode": "gcc-x64",
-            "configurationProvider": "ms-vscode.cmake-tools",
-            "compileCommands": "${workspaceFolder}/build/compile_commands.json"
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4

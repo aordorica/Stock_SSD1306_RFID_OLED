@@ -1,20 +1,4 @@
 dependencies:
-  Adafruit_BusIO:
-    component_hash: 5c325634b29c2f0d53276559f6145910900f3768329497e43a6b4d0044a6f06f
-    dependencies: []
-    source:
-      git: https://github.com/adafruit/Adafruit_BusIO.git
-      path: .
-      type: git
-    version: 055013b58dab9c3f1e016c75aac6eafb58e8d789
-  adafruit-gfx-library:
-    component_hash: cc2d54f875fb496afdd971fc766e0c6f030f654b456fbb3d8614e6bfac7ee805
-    dependencies: []
-    source:
-      git: https://github.com/adafruit/Adafruit-GFX-Library.git
-      path: .
-      type: git
-    version: 87e15509a9e16892e60947bc4231027882edbd34
   chmorgan/esp-libhelix-mp3:
     component_hash: cbb76089dc2c5749f7b470e2e70aedc44c9da519e04eb9a67d4c7ec275229e53
     dependencies:
@@ -25,97 +9,6 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 1.0.3
-  espressif/arduino-esp32:
-    component_hash: 2c6a304d949514dbdb0624af0cae7674cd613af7642de92740aca869d3ce22e6
-    dependencies:
-    - name: idf
-      version: '>=5.3,<5.5'
-    - name: espressif/mdns
-      require: public
-      version: ^1.2.3
-    - name: espressif/esp_modem
-      version: ^1.1.0
-    - name: espressif/esp-zboss-lib
-      require: public
-      rules:
-      - if: target not in [esp32c2, esp32p4]
-      version: ==1.6.3
-    - name: espressif/esp-zigbee-lib
-      require: public
-      rules:
-      - if: target not in [esp32c2, esp32p4]
-      version: ==1.6.3
-    - name: espressif/esp-dsp
-      rules:
-      - if: target != esp32c2
-      version: ^1.3.4
-    - name: espressif/network_provisioning
-      version: 1.0.2
-    - name: espressif/esp_rainmaker
-      rules:
-      - if: target not in [esp32c2, esp32p4]
-      version: 1.5.0
-    - name: espressif/rmaker_common
-      rules:
-      - if: target not in [esp32c2, esp32p4]
-      version: 1.4.6
-    - name: espressif/esp_insights
-      rules:
-      - if: target not in [esp32c2, esp32p4]
-      version: 1.0.1
-    - name: espressif/esp_diag_data_store
-      rules:
-      - if: target not in [esp32c2, esp32p4]
-      version: 1.0.1
-    - name: espressif/esp_diagnostics
-      rules:
-      - if: target not in [esp32c2, esp32p4]
-      version: 1.0.2
-    - name: espressif/cbor
-      rules:
-      - if: target not in [esp32c2, esp32p4]
-      version: 0.6.0~1
-    - name: espressif/qrcode
-      rules:
-      - if: target not in [esp32c2, esp32p4]
-      version: 0.1.0~2
-    - name: espressif/esp-sr
-      rules:
-      - if: target in [esp32s3]
-      version: ^1.4.2
-    - name: espressif/esp_hosted
-      rules:
-      - if: target == esp32p4
-      version: ^0.0.25
-    - name: espressif/esp_wifi_remote
-      rules:
-      - if: target == esp32p4
-      version: ^0.4.1
-    - name: espressif/libsodium
-      require: public
-      version: ^1.0.20~1
-    - name: espressif/esp-modbus
-      require: public
-      version: ^1.0.15
-    - name: joltwallet/littlefs
-      version: ^1.10.2
-    - name: chmorgan/esp-libhelix-mp3
-      require: public
-      version: 1.0.3
-    source:
-      git: https://github.com/espressif/arduino-esp32.git
-      path: .
-      type: git
-    targets:
-    - esp32
-    - esp32s2
-    - esp32s3
-    - esp32c2
-    - esp32c3
-    - esp32c6
-    - esp32h2
-    - esp32p4
-    version: dd825349f8001fcd33149d49a7a859040af4b7e3
   espressif/cbor:
     component_hash: 440f4ee4504841cc9b4f3a8ef755776a612ac9dace355514c68b999868f990ff
     dependencies:
@@ -419,11 +312,16 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 1.18.1
+  lcdgfx:
+    component_hash: d3b0b150c9e9abddc5523e53c365d0e01fab216f7b2dfc4a0a6f9d75770ee50d
+    dependencies: []
+    source:
+      git: https://github.com/lexus2k/lcdgfx.git
+      path: .
+      type: git
+    version: d0147697780d4cfc1fd007275609df211c1352b5
 direct_dependencies:
-- Adafruit_BusIO
-- adafruit-gfx-library
 - chmorgan/esp-libhelix-mp3
-- espressif/arduino-esp32
 - espressif/cbor
 - espressif/esp-dsp
 - espressif/esp-modbus
@@ -442,6 +340,7 @@ direct_dependencies:
 - espressif/rmaker_common
 - idf
 - joltwallet/littlefs
-manifest_hash: 48545a29b121af59d64b85f148b2c622e6fa3e7b00f338e86dac2f797589402d
+- lcdgfx
+manifest_hash: bc0caae3a7abf6b1a2e77a5bdbabe3f9cd1fcdd883c6ba7218ec300766042dc7
 target: esp32s3
 version: 2.0.0

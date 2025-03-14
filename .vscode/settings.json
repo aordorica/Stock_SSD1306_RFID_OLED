@@ -2,19 +2,27 @@
     "C_Cpp.intelliSenseEngine": "default",
     "C_Cpp.errorSquiggles": "enabled",
     "C_Cpp.default.mergeConfigurations": true,
-    "idf.espIdfPath": "/Users/alanordorica/esp/v5.4/esp-idf/",
+    "idf.espIdfPath": "/Users/alanordorica/esp/v5.4/esp-idf",
     "idf.port": "/dev/tty.usbmodem83201",
-    "idf.toolsPath": "/Users/alanordorica/.espressif/",
+    "idf.toolsPath": "/Users/alanordorica/.espressif",
     "idf.customExtraVars": {
         "IDF_TARGET": "esp32s3"
     },
+    "idf.espIdfPathWin": "/Users/alanordorica/esp/v5.4/esp-idf",
+    "idf.flashBaudRate": "115200",
+    "idf.flashType": "UART",
     "idf.openOcdDebugLevel": 4,
     "idf.showOnboardingOnInit": false,
-    "idf.pythonInstallPath": "/Users/alanordorica/.espressif/python_env/idf5.4_py3.13_env/bin/python3",
+    "idf.pythonInstallPath": "/usr/local/bin/python",
     "idf.enableIdfComponentManager": true,
     "terminal.integrated.env.osx": {
         "PATH": "/Users/alanordorica/.espressif/python_env/idf5.4_py3.13_env/bin:${env:PATH}"
     },
-    "python.defaultInterpreterPath": "/Users/alanordorica/.espressif/python_env/idf5.4_py3.13_env/bin/python3",
-    "workbench.editor.enablePreview": false
+    "python.defaultInterpreterPath": "${IDF_TOOLS_PATH}/python_env/idf5.4_py3.13_env/bin/python3",
+    "workbench.editor.enablePreview": false,
+    "C_Cpp.default.compilerPath": "${IDF_TOOLS_PATH}/tools/xtensa-esp-elf/esp-14.2.0_20241119/xtensa-esp-elf/bin/xtensa-esp32s3-elf-gcc",
+    "idf.openOcdConfigs": [
+        "/board/esp32s3-builtin.cfg"
+    ],
+    "idf.launchMonitorOnDebugSession": true
 }

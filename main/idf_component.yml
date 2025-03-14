@@ -16,10 +16,12 @@ dependencies:
   #   public: true
   # ssd1306:
   #   git: https://github.com/aordorica/i2c_ssd1306_lib.git
-  adafruit-gfx-library:
-    git: https://github.com/adafruit/Adafruit-GFX-Library.git
-  Adafruit_BusIO:
-    git: https://github.com/adafruit/Adafruit_BusIO.git
-  espressif/arduino-esp32:
-    git: https://github.com/espressif/arduino-esp32.git
-    version: idf-release/v5.4 # This line specifies the branch you want to use
+  # adafruit-gfx-library:
+  #   git: https://github.com/adafruit/Adafruit-GFX-Library.git
+  # Adafruit_BusIO:
+  #   git: https://github.com/adafruit/Adafruit_BusIO.git
+  # espressif/arduino-esp32:
+  #   git: https://github.com/espressif/arduino-esp32.git
+  #   version: idf-release/v5.4 # This line specifies the branch you want to use
+  lcdgfx:
+    git: https://github.com/lexus2k/lcdgfx.git
