@@ -42,4 +42,5 @@
 
 # Directories to ignore
 comp_backups/
+managed_components/
 build/
