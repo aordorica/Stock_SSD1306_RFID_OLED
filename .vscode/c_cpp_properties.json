@@ -2,7 +2,7 @@
     "configurations": [
         {
             "name": "ESP-IDF [Xtensa | esp-12.2.0_20230208]",
-            "cStandard": "c11",
+            "cStandard": "c23",
             "cppStandard": "c++23",
             "compileCommands": "${workspaceFolder}/build/compile_commands.json",
             "forcedInclude": [
@@ -16,11 +16,13 @@
                 "${env:IDF_PATH}/components/**",
                 "${workspaceFolder}/managed_components/**",
                 "${workspaceFolder}/components/**",
+                "${workspaceFolder}/img/**",
                 "${IDF_PATH}/components/esp_gdbstub/include"
             ],
             "browse": {
                 "path": [
                     "${workspaceFolder}",
+                    "${workspaceFolder}/img/**",
                     "${env:configAdditionalBrowsePath}",
                     "${env:xtensaBrowsePath}",
                     "${env:workspaceBrowsePath}",

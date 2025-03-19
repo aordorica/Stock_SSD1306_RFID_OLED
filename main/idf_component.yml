@@ -2,7 +2,7 @@
 dependencies:
   ## Required IDF version
   idf:
-    version: ">=4.1.0"
+    version: '>=4.1.0'
   # # Put list of dependencies here
   # # For components maintained by Espressif:
   # component: "~1.0.0"
@@ -25,3 +25,6 @@ dependencies:
   #   version: idf-release/v5.4 # This line specifies the branch you want to use
   lcdgfx:
     git: https://github.com/lexus2k/lcdgfx.git
+  # ffmpeg:
+  #   git: https://git.ffmpeg.org/ffmpeg.git
+  abobija/rc522: ^3.3.1

@@ -1,15 +1,21 @@
 #include <stdio.h>
+#include <iostream>
+#include <iterator>
+
 #include "esp_gdbstub.h" // GDB stub header
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "driver/i2c_master.h" // New I2C Master Bus API header
 #include "esp_log.h"
+#include "esp_err.h"
 #include "driver/gpio.h"
 #include "lcdgfx.h"
-// #include "ssd1306.h"       // SSD1306 library header (from oled_ssd1306.c)
-// #include "ssd1306_fonts.h" // Font definitions
+#include "gif_frames_all.h"
+#include "nano_engine_v2.h"
+#include "nano_gfx_types.h"
 
 using namespace std;
+#define TAG "FRAMES"
 
 // I2C and OLED configuration
 #define I2C_BUS_NUM I2C_NUM_0
@@ -18,58 +24,124 @@ using namespace std;
 #define I2C_MASTER_SCL_IO GPIO_NUM_9
 #define I2C_MASTER_TIMEOUT_MS (1000 / portTICK_PERIOD_MS)
 
-static const char *TAG = "MAIN_V2";
+// static const char *TAG = "MAIN_V2";
+const int frameSize = 350;
+const int totalFrames = 29;
+int currentFrame = 0;
+
+auto it = frame_list.begin();
+auto next_it = std::next(it);
+
+DisplaySSD1306_128x64_I2C display(-1, {I2C_BUS_NUM, OLED_ADDR, I2C_MASTER_SCL_IO, I2C_MASTER_SDA_IO});
+NanoEngine1<DisplaySSD1306_128x64_I2C> engine(display);
+NanoSprite<NanoEngine1<DisplaySSD1306_128x64_I2C>::TilerT> sprite({0, 14}, {128, 36}, *it);
 
 namespace animation
 {
-    extern "C" void printAnimation(DisplaySSD1306_128x64_I2C display)
+    bool drawAll()
     {
-        // Simple animation: move text down the screen.
-        // for (int i = 0; i < 10; i++)
-        // {
-        //     ssd1306_clearScreen();
-        //     char buf[32];
-        //     sprintf(buf, "Moving Text %d", i);
-        //     ssd1306_printFixed(0, i * 8, buf, STYLE_NORMAL);
-        //     vTaskDelay(500 / portTICK_PERIOD_MS);
-        // }
-        display.drawWindow(0, 40, 0, 0, "Loading...", true);
+        try
+        {
+            engine.getCanvas().clear();
+            engine.getCanvas().setMode(0);
+            engine.getCanvas().setColor(1);
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "Exception Caught in drawAll(): " << e.what() << '\n';
+        }
+
+        return true;
     }
 
-    int progress = 0;
-
-    void loop(DisplaySSD1306_128x64_I2C display)
+    void setup()
     {
-        display.drawProgressBar(progress);
-        progress++;
-        if (progress > 100)
+        display.begin();
+        engine.begin();
+        engine.setFrameRate(30);
+        engine.drawCallback(drawAll);
+        engine.refresh();
+        if (it == frame_list.end())
         {
-            progress = 0;
-            lcd_delay(2000);
+            ESP_LOGW(TAG, "WARNING: Begining Frame is End()!");
+            return;
         }
-        else
+        engine.insert(sprite);
+    }
+
+    void loop()
+    {
+        try
         {
-            lcd_delay(50);
+            if (!engine.nextFrame() && it == frame_list.end())
+                return;
+            engine.display();
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "Exception Caught in loop(): " << e.what() << '\n';
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(15));
+    }
+
+    void nextFrame()
+    {
+        try
+        {
+            ++it;
+            next_it = std::next(it);
+            sprite.setBitmap(*it);
+            engine.refresh();
+            drawAll();
+            engine.display();
+            loop();
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "Exception Caught in nextFrame(): " << e.what() << '\n';
         }
     }
-}
 
-extern "C" void app_main(void)
-{
-    DisplaySSD1306_128x64_I2C display(-1, {I2C_BUS_NUM, OLED_ADDR, I2C_MASTER_SCL_IO, I2C_MASTER_SDA_IO});
-    // esp_gdbstub_init();
-
-    display.begin();
-    display.fill(0x00);
-    display.setFixedFont(ssd1306xled_font6x8);
-
-    printf("Now starting Animation print...");
-    animation::printAnimation(display);
-
-    // vTaskDelay(1000 / portTICK_PERIOD_MS);
-
-    while (animation::progress < 101)
+    void resetFrame()
     {
-        animation::loop(display);
+        try
+        {
+            it = frame_list.begin();
+            sprite.setBitmap(*it);
+            engine.refresh();
+            drawAll();
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "Exception Caught: " << e.what() << '\n';
+        }
+    }
+
+    extern "C" void app_main(void)
+    {
+        // esp_gdbstub_init();
+        display.setFixedFont(ssd1306xled_font6x8);
+
+        printf("Now starting Animation print...");
+
+        // Setup Engine and Display
+        setup();
+        while (1)
+        {
+            if (next_it == frame_list.end())
+                resetFrame();
+            engine.display();
+            loop();
+            try
+            {
+                nextFrame();
+            }
+            catch (const std::exception &e)
+            {
+                std::cerr << "Exception accessing nextFrame(): " << e.what() << '\n';
+            }
+            ESP_LOGD(TAG, "\nValues -- Frame: %s, it: %s", *it, it.operator*());
+        }
     }
 }
