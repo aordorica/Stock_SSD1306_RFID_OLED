@@ -29,15 +29,17 @@ stop_openocd() {
     pkill openocd
 }
 
+pgrep -x openocd
+running=$?
 case "$1" in
     start)
-        if pgrep -x openocd > /dev/null
-        then
+        if pgrep -x openocd &> /dev/null; then
             echo "OpenOCD server already running!"
-            pgrep -x openocd > /dev/null
-        else
-            echo "No currently running OpenOCD server instances!"
+        elif ! pgrep -x openocd &> /dev/null; then
+            echo "No current OpenOCD instances!"
             start_openocd
+        else
+            echo "Error finding openocd instances, please double check arguments"
         fi
         ;;
     stop)
