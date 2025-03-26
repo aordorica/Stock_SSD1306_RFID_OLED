@@ -38,6 +38,7 @@
 # Environment Variables
 *.env
 
+settings.json
 *.cache/
 
 # Directories to ignore
