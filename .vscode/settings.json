@@ -13,7 +13,7 @@
     "idf.flashType": "UART",
     "idf.openOcdDebugLevel": 4,
     "idf.showOnboardingOnInit": false,
-    "idf.pythonInstallPath": "/usr/local/bin/python",
+    "idf.pythonInstallPath": "/usr/bin/python3",
     "idf.enableIdfComponentManager": true,
     "terminal.integrated.env.osx": {
         "PATH": "/Users/alanordorica/.espressif/python_env/idf5.4_py3.13_env/bin:${env:PATH}"
