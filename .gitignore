@@ -45,7 +45,6 @@ settings.json
 comp_backups/
 managed_components/
 build/
-.vscode/
 
 # Ignore generated frame images which can be generated via python scripts
 *.gif
