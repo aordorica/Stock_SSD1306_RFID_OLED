@@ -44,3 +44,6 @@
 comp_backups/
 managed_components/
 build/
+
+# Ignore generated frame images which can be generated via python scripts
+*.gif
